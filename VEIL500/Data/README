@@ -1,0 +1,67 @@
+This dataset consists of following files:
+
+1. Object.xml:  Describes the set of all categories of objects that we consider.
+                For each object category, the file defines the default values of
+                states and properties.
+
+2. ControllerInstructions.xml: Defines set of actions and their argument type.
+
+3. data.xml: This is the main data file consisting of set of 469 points comprising of 
+             text, environment id, objective and action sequence. This text was segmented
+             using a chunking algorithm. The segments of this text are aligned to the sequence.
+             The jump to next segment of text is denoted by the tag <change_of_alignment/>
+             For illustration, consider the toy example:
+ 
+             text: get me water | and close the stove.
+             action:   <action_sequences>
+				<action>moveto cup</action>
+				<action>grasp cup</action>
+				<change_of_alignment/>
+				<action>moveto stove</action>
+				<action>turn stoveKnob1</action>
+				<action>turn stoveKnob2</action>
+			</action_sequences>
+
+             this example, contains text comprising of 2 segments and an action sequence with 4 actions. The first segment
+             of text is mapped to the first 2 actions and the 2nd segment is mapped to the last 3 actions. 
+
+4. domainKnowledge.pddl: Contains the effect and precondition for every action primitive. Encoded in STRIPS format.
+                         This allows our algorithm to perform simulation and planning.
+
+5. Environments: Contains two world -- kitchen and living room. For both of these world, we further have 10 variations.
+                 Each xml file contains set of objects and their configuration and states. Certain objects have placeholder
+                 positions such as (200,-200,200) which are inferred from the scenario. These 3D scenarios can be downloaded
+                 from http://tellmedave.com. You can see each and traverse through each environment under http://tellmedave.com/debugger.html
+
+6. Test Setting: Algorithm is tested on environment 9 and 10 of the kitchen and living room environment and trained on remaining.
+
+7. Crowd-Sourcing System: If you want our crowd-sourcing system (javascript webgl simulator) then please drop us an 
+
+8. Erratas: Please check http://tellmedave.com for any erratas.
+
+9. Unprocessed Data: We processed this data from a more raw form which contains trajectories and more noise. If you would like to work with 
+		     this dataset then please contact us. 
+
+10. Object Processing: Some objects in the dataset dont play any functional role for our problem and so we removed them. List of these are:
+
+                "FridgeSeparator", "FridgeWater", "FridgeCeiling", "FridgeFloor",
+		"FridgeLeft", "FridgeRight", "MicrowaveBack", "MicrowaveCeiling", "MicrowaveWall", "MicrowaveFloor",               
+                "Camera1","KitchenCeiling", "StoveTop",
+	        "flower1", "Kitchen", "skybox", "livingRoom", "livingRoomCeiling", "camera_1"
+                 
+                you can go to http://tellmedave.com/debugger.html for visualizing the dataset and seeing what you need. Alternatively you
+                can contact us for any help or refer to the source code.
+
+Note: Some points in the dataset have less than 2 actions but they had more before noise processing. We only removed datapoints which had less than 2 actions even before noise removal.
+
+
+If you use any part of this dataset then please cite:
+
+		@inproceedings{misra2015environment,
+		  author = {D. K. Misra and K. Tao and P. Liang and A. Saxena},
+		  booktitle = {Association for Computational Linguistics (ACL)},
+		  title = {Environment-Driven Lexicon Induction for High-Level Instructions},
+		  year = {2015},
+		}
+
+Please contact Dipendra Misra (dkm@cs.cornell.edu) for any questions. We would also like to hear from you in case you use this dataset.
